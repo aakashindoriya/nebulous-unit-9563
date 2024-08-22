@@ -87,7 +87,7 @@ function Header({ page }) {
           <Box gap="6" display={{ base: "none", md: "flex" }}>
             <Link to={isAuthenticated ? null : "/login"}>
               <Text fontSize="sm" onClick={isAuthenticated ? () => {dispatch(authLogout()); dispatch(getCart())} : null} color={page == 'home' ? theme.textColor : 'black'} >
-                {isAuthenticated ? user.name.toUpperCase() : "LOGIN"}
+                {isAuthenticated || "LOGIN"}
               </Text>
             </Link>
             <Text color={page == 'home' ? theme.textColor : 'black'}  fontSize="sm">HELP</Text>

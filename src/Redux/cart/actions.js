@@ -6,9 +6,9 @@ import { useToast } from "@chakra-ui/react";
 export const getCart = () => async (dispatch) => {
     try {
         dispatch({ type: GET_CART_REQUEST });
-        const res = await axios.get(`https://cultwear.onrender.com/cart`, {
+        const res = await axios.get(`https://aakash.onrender.com/cart`, {
             headers: {
-                token: Cookies.get("token"),
+                Authorization: Cookies.get("token"),
             },
         });
         dispatch({ type: GET_CART_SUCCESS, payload: res.data.data });
@@ -23,15 +23,16 @@ export const addProductToCart = (id) => async (dispatch) => {
     try {
         dispatch({ type: ADD_TO_CART_REQUEST });
         let cart = {productId: id, quantity: 1}
-        const res = await axios.post(`https://cultwear.onrender.com/cart`, cart, {
+        const res = await axios.post(`https://aakash.onrender.com/cart`, cart, {
             headers: {
-                token: Cookies.get("token"),
+                Authorization: Cookies.get("token"),
             },
         });
+        console.log(res.data)
         dispatch({
             type: ADD_TO_CART_SUCCESS,
             payload: {
-                newCartItem: res.data.data,
+                newCartItem: res.data.cartItem,
                 message: res.data.message
             }
         });
@@ -48,16 +49,16 @@ export const addProductToCart = (id) => async (dispatch) => {
 export const updateProductInCart = (id, quantity) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_CART_REQUEST });
-        const res = await axios.put(`https://cultwear.onrender.com/cart/${id}`, {quantity}, {
+        const res = await axios.put(`https://aakash.onrender.com/cart/${id}`, {quantity}, {
             headers: {
-                token: Cookies.get("token"),
+                Authorization: Cookies.get("token"),
             },
         });
         dispatch({
             type: UPDATE_CART_SUCCESS,
 
             payload: {
-                updatedItem: res.data.data,
+                updatedItem: res.data.cartItem,
                 message: res.data.message
             }
         });
@@ -77,7 +78,7 @@ export const removeProductFromCart = (id) => async (dispatch) => {
     try {
         dispatch({ type: REMOVE_FROM_CART_REQUEST });
 
-        const res = await axios.delete(`https://cultwear.onrender.com/cart/${id}`, {
+        const res = await axios.delete(`https://aakash.onrender.com/cart/${id}`, {
             headers: {
                 token: Cookies.get("token"),
             },

@@ -17,7 +17,6 @@ const initialState = {
   data: {
     isAuthenticated: Cookies.get("token") ? true : false,
     token: Cookies.get("token") || null,
-    user: Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null,
   },
 };
 
@@ -27,21 +26,13 @@ export default function authReducer(state = initialState, { type, payload }) {
       return { ...state, userLogin: { loading: true, error: false } };
     case AUTH_LOGIN_SUCCESS:
       Cookies.set("token", payload.token);
-      Cookies.set(
-        "user",
-        JSON.stringify({
-          name: payload.user.name,
-          email: payload.user.email,
-          _id: payload.user._id,
-        })
-      );
+      
       return {
         ...state,
         userLogin: { loading: false, error: false, message: payload.message },
         data: {
           isAuthenticated: true,
-          token: payload.token,
-          user: payload.user,
+          token: payload.token
         }
       };
     case AUTH_LOGIN_FAILURE:
@@ -51,13 +42,11 @@ export default function authReducer(state = initialState, { type, payload }) {
       };
     case AUTH_LOGOUT:
       Cookies.remove("token");
-      Cookies.remove("user");
       return {
         ...state,
         data: {
           isAuthenticated: false,
           token: null,
-          user: null,
         },
       };
     case AUTH_REGISTER_REQUEST:
@@ -67,22 +56,10 @@ export default function authReducer(state = initialState, { type, payload }) {
       };
     case AUTH_REGISTER_SUCCESS:
       Cookies.set("token", payload.token);
-      Cookies.set(
-        "user",
-        JSON.stringify({
-          name: payload.user.name,
-          email: payload.user.email,
-          _id: payload.user._id,
-        })
-      );
+     
       return {
         ...state,
-        userRegister: { loading: false, error: false, message: payload.message },
-        data: {
-          isAuthenticated: true,
-          token: payload.token,
-          user: payload.user,
-        }
+        userRegister: { loading: false, error: false, message: "user registerd successfully" },
       };
     case AUTH_REGISTER_FAILURE:
       return {

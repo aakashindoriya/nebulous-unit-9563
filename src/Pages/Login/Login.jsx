@@ -19,12 +19,12 @@ const Login = () => {
     const toast = useToast();
     const navigate = useNavigate();
 
-    const { userLogin: { loading, error, message }, data: { isAuthenticated, token, user } } = useSelector(state => state.auth);
+    const { userLogin: { loading, error, message }, data: { isAuthenticated } } = useSelector(state => state.auth);
 
     useEffect(() => {
         if (isAuthenticated) {
             toast({
-                title: `Welcome ${user.name}`,
+                title: `Welcome}`,
                 description: "Your account is created",
                 status: "success",
                 duration: 2000,

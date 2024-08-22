@@ -16,7 +16,7 @@ export const getProducts = (params) => async (dispatch) => {
     })
     try {
         dispatch({ type: GET_PRODUCTS_LOADING })
-        const response = await axios.get(`https://cultwear.onrender.com/products?${query}`)
+        const response = await axios.get(`https://aakash.onrender.com/products?${query}`)
         dispatch({ type: GET_PRODUCTS, payload: response.data.data })
     } catch (error) {
         dispatch({ type: GET_PRODUCTS_ERROR, payload: error })
@@ -26,7 +26,7 @@ export const getProducts = (params) => async (dispatch) => {
 export const getSingleProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: GET_PRODUCT_LOADING })
-        const response = await axios.get(`https://cultwear.onrender.com/products/${id}`);
+        const response = await axios.get(`https://aakash.onrender.com/products/${id}`);
         dispatch({ type: GET_PRODUCT, payload: response.data.data })
     } catch (error) {
         dispatch({ type: GET_PRODUCT_ERROR, payload: error })
@@ -36,7 +36,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
 export const addProduct = (product) => async (dispatch) => {
     try {
         dispatch({ type: ADD_PRODUCT_LOADING })
-        const response = await axios.post('https://cultwear.onrender.com/products', product, {
+        const response = await axios.post('https://aakash.onrender.com/products', product, {
             headers: {
                 'token': Cookies.get('token')
             }
@@ -50,7 +50,7 @@ export const addProduct = (product) => async (dispatch) => {
 export const updateProduct = (id, product) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PRODUCT_LOADING })
-        const response = await axios.patch(`https://cultwear.onrender.com/products/${id}`, product, {
+        const response = await axios.patch(`https://aakash.onrender.com/products/${id}`, product, {
             headers: {
                 'token': Cookies.get('token')
             }
@@ -64,7 +64,7 @@ export const updateProduct = (id, product) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_PRODUCT_LOADING })
-        const response = await axios.delete(`https://cultwear.onrender.com/products/${id}`, {
+        const response = await axios.delete(`https://aakash.onrender.com/products/${id}`, {
             headers: {
                 'token': Cookies.get('token')
             }

@@ -28,12 +28,12 @@ const Register = () => {
     const toast = useToast();
     const navigate = useNavigate();
 
-    const { userRegister: { loading, error, message }, data: { isAuthenticated, token, user } } = useSelector(state => state.auth);
+    const { userRegister: { loading, error, message }, data: { isAuthenticated } } = useSelector(state => state.auth);
 
     useEffect(() => {
         if (isAuthenticated) {
             toast({
-                title: `Welcome ${user.name}`,
+                title: `Welcome `,
                 description: "You are logged in",
                 status: "success",
                 duration: 2000,
